@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RegistroPersonasT.VIEWS.PagePersonas">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txid" IsVisible="false"/>
+            <Entry x:Name="txtnombre" 
+                   Placeholder="Nombres" 
+                   Keyboard="Text"
+                   TextColor="Green"
+                   Margin="10,10,10,0"/>
+
+                <Entry x:Name="txtapellidos" Placeholder="Apellidos" 
+                   Margin="10,10,10,0"/>
+
+                <Entry x:Name="txtedad" Placeholder="Edad" Keyboard="Numeric"
+                   Margin="10,10,10,0"/>
+            
+                <Entry x:Name="txtcorreo" Placeholder="Correo" 
+                   Margin="10,10,10,0"/>
+            
+            <Entry x:Name="txtdireccion" Placeholder="Direccion" 
+                   Margin="10,10,10,0"/>
+            
+            <Button x:Name="EnviarInfo" Text="Enviar Datos" Clicked="EnviarInfo_Clicked"                  
+                    Margin="10,10,10,0"
+                    BackgroundColor="LightSalmon"/>
+            <Button x:Name="Actualizar" Text="Actualizar" Clicked="Actualizar_Clicked" IsVisible="False"                 
+                    Margin="10,10,10,0"
+                    BackgroundColor="LightSalmon"/>
+            <Button x:Name="Eliminar" Text="Eliminar" Clicked="Eliminar_Clicked" IsVisible="False"                 
+                    Margin="10,10,10,0"
+                    BackgroundColor="LightSalmon"/>
+            
+            <ListView x:Name="listpersonas" ItemSelected="listpersonas_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                   
+
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding id}" Grid.Row="0" Grid.Column="0" TextColor="Black"/>
+                                <Label Text="{Binding nombres}" Grid.Row="0" Grid.Column="1" TextColor="Blue"/>
+                                <Label Text="{Binding apellidos}" Grid.Row="0" Grid.Column="2" TextColor="Blue"/>
+                                <Label Text="{Binding edad}" Grid.Row="0" Grid.Column="3" TextColor="Gray"/>
+                                <Label Text="{Binding direccion}" Grid.Row="0" Grid.Column="4" TextColor="Gray"/>
+                                <Label Text="{Binding correo}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  TextColor="Gray"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+
+           
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
