@@ -100,39 +100,49 @@ namespace RegistroPersonasT.VIEWS
         private async void Actualizar_Clicked(object sender, EventArgs e)
         {
 
-
-            PersonasModels personas = new PersonasModels()
+            if (!string.IsNullOrEmpty(txid.Text))
             {
+                PersonasModels personas = new PersonasModels()
+                {
 
-                nombres = txtnombre.Text,
-                apellidos = txtapellidos.Text,
-                edad = Convert.ToDouble(txtedad.Text),
-                correo = txtcorreo.Text,
-                direccion = txtdireccion.Text
-            };
-            await App.sqlitedb.Saveperson(personas);
-            await DisplayAlert("Registro de Persona", "Sus datos se actualizaron Correctamente", "De Acuerdo");
+                    nombres = txtnombre.Text,
+                    apellidos = txtapellidos.Text,
+                    edad = Convert.ToDouble(txtedad.Text),
+                    correo = txtcorreo.Text,
+                    direccion = txtdireccion.Text
+                };
+                await App.sqlitedb.Saveperson(personas);
+                await DisplayAlert("Registro de Persona", "Sus datos se actualizaron Correctamente", "De Acuerdo");
+                txid.Text = "";
+                txtnombre.Text = "";
+                txtapellidos.Text = "";
+                txtedad.Text = "";
+                txtcorreo.Text = "";
+                txtdireccion.Text = "";
+
+                txid.IsVisible = false;
+                Actualizar.IsVisible = false;
+                EnviarInfo.IsVisible = true;
+                Datos();
+            }
+            
+            
 
 
-            txtnombre.Text = "";
-            txtapellidos.Text = "";
-            txtedad.Text = "";
-            txtcorreo.Text = "";
-            txtdireccion.Text = "";
+           
 
-            txid.IsVisible = false;
-            Actualizar.IsVisible = false;
-            EnviarInfo.IsVisible = true;
-            Datos();
+            
 
         }
 
         private async void listpersonas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var relist = (PersonasModels)e.SelectedItem;
-            EnviarInfo.IsVisible = false;
+            EnviarInfo.IsVisible = true;
             txid.IsVisible = true;
+            Actualizar.IsVisible = true;
             Eliminar.IsVisible = true;
+            //Eliminar.IsVisible = true;
 
 
             if (!string.IsNullOrEmpty(relist.id.ToString()))
